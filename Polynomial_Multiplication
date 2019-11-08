@@ -1,0 +1,69 @@
+import java.util.*;
+class Multiply_Polynomial
+{
+	int A[],B[],R[];
+	int T,N,M;
+	void input()
+	{   System.out.println("INPUT:");
+		Scanner in=new Scanner(System.in);
+		System.out.println("Enter the no. of test cases:");
+		T=in.nextInt();
+		while(T!=0)
+		{
+			N=in.nextInt(); // no. of coefficients of 1st polynomial
+			M=in.nextInt(); // no. of coefficients of the 2nd polynomial
+			A=new int[N];
+			B=new int[M];
+			R=new int[M+N-1];
+			System.out.println("Enter the coefficients of the 1st Polynomial:");
+			for(int i=0;i<N;i++)
+			A[i]=in.nextInt(); // 1st polynomial
+			System.out.println("1ST POLYNOMIAL");
+			display(A,N);
+			System.out.println("Enter the coefficients of the 2nd Polynomial:");
+			for(int i=0;i<M;i++)
+				B[i]=in.nextInt(); // 2nd polynomial
+			System.out.println("2ND POLYNOMIAL");
+			display(B,M);
+			
+			multiply_compute();
+			System.out.println("OUTPUT:");
+			  System.out.println("PRODUCT OF THE TWO POLYNOMIALS=");
+			  display(R,M+N-1);
+			T=T-1;
+		}
+		
+			
+   }
+	void multiply_compute() // method to multiply the two polynomials 
+	{
+		
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<M;j++)
+			R[i+j]+=A[i]*B[j];
+		}
+	}
+	
+	void display(int ar[],int lim) // method to display the product of the two polynomials
+	{
+		int pow=lim-1;
+		for(int i=0;i<lim;i++)
+		{
+			if(pow==0)
+				System.out.print(ar[i]);
+			else
+		   System.out.print(ar[i]+"x"+"^"+pow+"+");
+		   
+		   pow=pow-1;
+		}
+		System.out.println();
+	}
+	public static void main(String args[])
+	{
+		Multiply_Polynomial obj=new Multiply_Polynomial();
+		obj.input();
+		obj.multiply_compute();
+		
+	}
+}
